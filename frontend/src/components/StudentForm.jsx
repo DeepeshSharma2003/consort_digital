@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useStudents } from '../context/StudentContext';
 import { ArrowLeft } from 'lucide-react';
 
+// eslint-disable-next-line react/prop-types
 export const StudentForm = ({ mode }) => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -15,7 +16,7 @@ export const StudentForm = ({ mode }) => {
     admission_year: new Date().getFullYear(),
   });
 
-  const [loading, setLoading] = useState(false);  // Loading state to track form submission or data fetch
+  const [loading, setLoading] = useState(false);  
 
   useEffect(() => {
     if (mode === 'edit' && id) {
@@ -33,7 +34,7 @@ export const StudentForm = ({ mode }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);  // Set loading state to true when the form is being submitted
+    setLoading(true);  
 
     try {
       if (mode === 'add') {
@@ -45,7 +46,7 @@ export const StudentForm = ({ mode }) => {
     } catch (err) {
       console.error('Failed to save student:', err);
     } finally {
-      setLoading(false);  // Set loading state to false after the operation completes
+      setLoading(false);  
     }
   };
 
@@ -118,7 +119,7 @@ export const StudentForm = ({ mode }) => {
               <button
                 type="submit"
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                disabled={loading}  // Disable button when loading
+                disabled={loading}  
               >
                 {loading ? 'Saving...' : mode === 'add' ? 'Add Student' : 'Update Student'}
               </button>

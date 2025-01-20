@@ -3,17 +3,16 @@ const cors = require('cors');
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Database configuration for Neon PostgreSQL
+
 const pool = new Pool({
   connectionString: process.env.NEON_DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false, // Required for Neon to allow secure connections
+    rejectUnauthorized: false, 
   },
 });
 
@@ -25,7 +24,7 @@ pool.connect()
     console.error('Failed to connect to the Neon PostgreSQL database:', err);
   })
 
-// Middleware
+
 app.use(cors());
 app.use(express.json());
 
@@ -58,15 +57,15 @@ const initializeDatabase = async () => {
   `;
 
   try {
-    // Connect to the database
+   
     const client = await pool.connect();
     console.log('Database connected successfully.');
 
-    // Run the schema setup
+  
     await client.query(createTableQuery);
     console.log('Database initialized successfully.');
 
-    // Release the client back to the pool
+    
     client.release();
   } catch (error) {
     console.error('Error initializing database:', error);
@@ -74,9 +73,7 @@ const initializeDatabase = async () => {
   }
 };
 
-// initializeDatabase()
 
-// Routes
 app.get('/api/students', async (req, res) => {
   console.log('here')
   try {

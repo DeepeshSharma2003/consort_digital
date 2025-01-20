@@ -6,7 +6,7 @@ import { PlusCircle, Trash2, Loader } from 'lucide-react';
 export const StudentList = () => {
   const { students, deleteStudent, loading, error } = useStudents();
   const navigate = useNavigate();
-  const [deletingId, setDeletingId] = useState(null); // Track which student is being deleted
+  const [deletingId, setDeletingId] = useState(null); 
 
   if (loading) {
     return (
@@ -26,12 +26,12 @@ export const StudentList = () => {
 
   const handleDelete = async (studentId) => {
     try {
-      setDeletingId(studentId); // Set the ID of the student being deleted
+      setDeletingId(studentId);
       await deleteStudent(studentId);
     } catch (err) {
       console.error('Failed to delete student:', err);
     } finally {
-      setDeletingId(null); // Reset deletingId after the operation
+      setDeletingId(null); 
     }
   };
 
@@ -89,7 +89,7 @@ export const StudentList = () => {
                       </button>
                       <button
                         onClick={() => handleDelete(student.id)}
-                        disabled={deletingId === student.id} // Disable button if deleting this student
+                        disabled={deletingId === student.id} 
                         className="text-red-600 hover:text-red-900 ml-2"
                       >
                         {deletingId === student.id ? (

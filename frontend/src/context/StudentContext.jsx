@@ -5,6 +5,7 @@ const StudentContext = createContext(undefined);
 
 const API_URL = 'http://localhost:5000';
 
+// eslint-disable-next-line react/prop-types
 export const StudentProvider = ({ children }) => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
