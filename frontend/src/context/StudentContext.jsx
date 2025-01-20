@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const StudentContext = createContext(undefined);
 
-const API_URL = 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
 // eslint-disable-next-line react/prop-types
 export const StudentProvider = ({ children }) => {
